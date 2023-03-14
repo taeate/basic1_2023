@@ -1,6 +1,8 @@
 package com.ll.basic1;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -84,5 +86,30 @@ class Car {
         this.relatedIds = relatedIds;
     }
 
+    //http://localhost:8080/home/addPerson?name=홍길동&age=11
+    @GetMapping("/home/addPerson")
+    @ResponseBody
+    public String addPerson(String name, int age){
+        Person p = new Person(name, age);
 
+        return "%d번 사람이 추가되었습니다.".formatted(p.getId());
+    }
+}
+@AllArgsConstructor
+@Getter
+@ToString
+class Person {
+    private static int lastId;
+    private final int id;
+    private final String name;
+    private final int age;
+
+
+    static {
+        lastId = 0;
+    }
+
+    Person(String name,int age){
+        this(++lastId,name,age);
+    }
 }
