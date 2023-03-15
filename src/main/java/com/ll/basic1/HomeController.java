@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Controller
@@ -55,61 +52,5 @@ public class HomeController {
             }});
         }};
         return map;
-    }
-
-    @GetMapping("/home/returnCar")
-    @ResponseBody
-    public Car showReturnCar(){
-        Car car = new Car(1,100, "카니발",new ArrayList<>() {{
-            add(2);
-            add(3);
-            add(4);
-        }});
-        return car;
-    }
-}
-
-class Car {
-    @Getter
-    private final int id;
-    @Getter
-    private final int speed;
-    @Getter
-    private final String name;
-    @Getter
-    private final List<Integer> relatedIds;
-
-    public Car(int id, int speed, String name, List<Integer> relatedIds){
-        this.id = id;
-        this.speed = speed;
-        this.name= name;
-        this.relatedIds = relatedIds;
-    }
-
-    //http://localhost:8080/home/addPerson?name=홍길동&age=11
-    @GetMapping("/home/addPerson")
-    @ResponseBody
-    public String addPerson(String name, int age){
-        Person p = new Person(name, age);
-
-        return "%d번 사람이 추가되었습니다.".formatted(p.getId());
-    }
-}
-@AllArgsConstructor
-@Getter
-@ToString
-class Person {
-    private static int lastId;
-    private final int id;
-    private final String name;
-    private final int age;
-
-
-    static {
-        lastId = 0;
-    }
-
-    Person(String name,int age){
-        this(++lastId,name,age);
     }
 }
