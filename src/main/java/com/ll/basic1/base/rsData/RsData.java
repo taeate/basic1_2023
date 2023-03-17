@@ -9,8 +9,12 @@ import lombok.Getter;
 public class RsData {
     private final String resultCode;
     private final String msg;
+    private final Object data;
 
     public static RsData of(String resultCode, String msg){
-        return new RsData(resultCode,msg);
+        return of(resultCode,msg);
+    }
+    public static RsData of(String resultCode, String msg, Object data){
+        return new RsData(resultCode,msg, data);
     }
 }
