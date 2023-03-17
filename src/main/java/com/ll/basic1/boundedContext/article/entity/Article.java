@@ -23,8 +23,8 @@ import static lombok.AccessLevel.PROTECTED;
 @Builder
 @EntityListeners(AuditingEntityListener.class)
 public class Article {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @Id // primary key
+    @GeneratedValue(strategy = IDENTITY) // auto increment
     private Long id;
     private String title;
     private String content;
