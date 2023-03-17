@@ -6,9 +6,10 @@ import java.util.List;
 
 
 public class MemberRepository {
+
     private List<Member> members;
 
-    public MemberRepository() {
+    public MemberRepository(){
 
         members = new ArrayList<>();
 
@@ -22,18 +23,15 @@ public class MemberRepository {
         members.add(new Member("hello", "123411"));
         members.add(new Member("good", "123412"));
         members.add(new Member("peace", "123413"));
-
     }
 
-    public Member findByUsername(String username) {
+    public Member findByUsername(String username){
         return members
-                .stream()
-                .filter(m -> m.getUsername().equals(username))
-                .findFirst()
-                .orElse(null);
+            .stream()
+            .filter(m -> m.getUsername().equals(username))
+            .findFirst()
+            .orElse(null);
     }
-
 }
-
 
 
